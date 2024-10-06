@@ -1,0 +1,26 @@
+---
+import ContentLayout from "@/layouts/ContentLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const blogs = await getCollection('blog');
+---
+<ContentLayout title="blogs">
+  {blogs.length ? <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+    {blogs.map(({data: {title, description, image}, slug}: CollectionEntry<'blog'>) => (
+      <Card className='overflow-hidden'>
+        <img src={image} alt={title} class="aspect-video object-cover" />
+        <CardHeader className="p-4">
+          <CardTitle className="text-2xl text-primary">{title}</CardTitle>
+          <CardDescription className="text-md">{description}</CardDescription>
+        </CardHeader>
+        <CardContent className="p-4">
+          <a href={`/blog/${slug}`}>
+            <Button variant="outline" className='w-full'><span class="icon-[lucide--book-open] size-4 mr-2"></span>Read</Button>
+          </a>
+        </CardContent>
+      </Card>
+    )
+  )}</ul> : null}
+</ContentLayout>

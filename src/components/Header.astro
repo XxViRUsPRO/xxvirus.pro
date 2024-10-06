@@ -1,0 +1,24 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '@/consts';
+import ThemeToggle from '@/components/ThemeToggle.astro';
+---
+
+<header>
+	<nav class="flex items-center justify-between px-4 py-3">
+		<div>
+			<a href="/" class="font-semibold opacity-80 hover:opacity-100"><div class="inline-flex items-center">{SITE_TITLE}<span class="icon-[lucide--chevron-right] size-5"></span></div><span class="inline-block -ml-0.5 w-2.5 h-0.5 bg-foreground rounded-full animate-fade-in-out duration-1000"></span></a>
+		</div>
+		<div class="flex items-center justify-end gap-4">
+			<HeaderLink href="/project">
+				<span class="icon-[lucide--rocket] block size-5 sm:hidden"></span>
+				<span class="hidden sm:block">Projects</span>
+			</HeaderLink>
+			<HeaderLink href="/blog">
+				<span class="icon-[lucide--pen-line] block size-5 sm:hidden"></span>
+				<span class="hidden sm:block">Blogs</span>
+			</HeaderLink>
+			<ThemeToggle />
+		</div>
+	</nav>
+</header>

@@ -1,0 +1,15 @@
+---
+import { Image } from 'astro:assets';
+import front from '/src/assets/flip-avatar/1.jpg'
+import back from '/src/assets/flip-avatar/2.jpg'
+---
+<div class="group relative size-full perspective-600">
+  <Image loading="eager" src={front} alt="" class="group-hover:rotate-y-180" />
+  <Image loading="eager" src={back} alt="" class="-rotate-y-180 group-hover:rotate-y-0" />
+</div>
+
+<style scoped>
+  img {
+    @apply absolute transition-transform transform backface-hidden duration-700 shadow-md object-cover size-full rounded-xl;
+  }
+</style>

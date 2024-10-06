@@ -1,0 +1,39 @@
+---
+import Hero from '@/components/Hero.astro'
+import Section from '@/components/Section.astro'
+import MainLayout from '@/layouts/MainLayout.astro'
+---
+<MainLayout>
+	<Hero />
+	<Section title="About Me" description="A little bit about myself">
+		<p>
+			Hello! I'm a software engineer who loves to build things for the web. I'm passionate about learning new technologies and sharing my knowledge with others. I enjoy working on open-source projects and contributing to the community. In my free time, I like to read books, watch movies, and play video games.
+		</p>
+	</Section>
+	<Section title="Education" description="My academic background">
+		<ul class="[&_li]:py-3 [&_li]:space-y-2 [&_li]:border-t">
+			<li>
+				<div class="flex justify-between">
+					<h3 class="font-semibold">M.S. in Computer Science</h3>
+					<p>2023 - Present</p>
+				</div>
+				<p>Lebanese International University</p>
+			</li>
+			<li>
+				<div class="flex justify-between">
+					<h3 class="font-semibold">B.S. in Computer Science</h3>
+					<p>2020 - 2023</p>
+				</div>
+				<p>Lebanese International University</p>
+			</li>
+		</ul>
+	</Section>
+	<Section title="Miscellaneous" description="Some random facts about me">
+		<ul class="list-disc list-inside">
+			<li>👨‍💻 I find enjoyment in writing code and building things.</li>
+			<li>📚 Currently reading <q>Charismatic Charlie Wade</q> by <i>Lord Leaf</i>.</li>
+			<li>🎮 I play <q>League of Legends</q> in my free time.</li>
+			<li>💀 Me and owls have alot of things in common. <span class="text-muted-foreground text-xs">(it's 5:30AM as I'm writing this)</span></li>
+		</ul>
+	</Section>
+</MainLayout>
