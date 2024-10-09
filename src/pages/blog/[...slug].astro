@@ -1,6 +1,8 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
+import { getImageByPath } from "@/lib/utils";
 import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
@@ -10,12 +12,17 @@ export const getStaticPaths = (async () => {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const { title, image } = entry.data;
+const { title, image: imagePath } = entry.data;
+const image = getImageByPath(imagePath);
+
+if (!image) {
+  throw new Error(`Image not found: ${imagePath}`);
+}
 ---
 <MainLayout>
   <div class="flex flex-col">
     <div class="relative aspect-video rounded-xl overflow-hidden">
-      <img src={image} alt={title} class="object-cover size-full" />
+      <Image src={image} alt={title} class="object-cover size-full" />
       <h1 class="absolute bottom-0 w-full py-6 bg-white/20 backdrop-blur-sm shadow-[0_4px_30px] shadow-white/10 border-t border-white/30 text-center ~text-4xl/6xl tracking-widest font-bold uppercase text-secondary">{title}</h1>
     </div>
     <div class="prose dark:prose-invert max-w-none mt-8">

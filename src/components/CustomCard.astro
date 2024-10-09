@@ -1,0 +1,27 @@
+---
+interface CustomCardProps {
+  title: string;
+  description: string;
+  image: string;
+}
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getImageByPath } from "@/lib/utils";
+import { Image } from "astro:assets";
+
+const { title, description, image: imagePath } = Astro.props as CustomCardProps;
+const image = getImageByPath(imagePath);
+
+if (!image) {
+  throw new Error(`Image not found: ${imagePath}`);
+}
+---
+<Card className='overflow-hidden'>
+  <Image src={image} alt={title} class="w-full min-h-[200px] aspect-video object-cover" />
+  <CardHeader className="p-4">
+    <CardTitle className="text-2xl text-primary">{title}</CardTitle>
+    <CardDescription className="text-md">{description}</CardDescription>
+  </CardHeader>
+  <CardContent className="flex justify-stretch items-center gap-x-1 p-4">
+    <slot />
+  </CardContent>
+</Card>
