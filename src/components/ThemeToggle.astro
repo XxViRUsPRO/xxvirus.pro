@@ -18,6 +18,6 @@
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle.addEventListener('click', toggleTheme);
   };
-  attachThemeToggle();
+  document.addEventListener('DOMContentLoaded', attachThemeToggle);
   document.addEventListener('astro:after-swap', attachThemeToggle);
 </script>

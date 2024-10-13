@@ -40,6 +40,6 @@ import ThemeToggle from '@/components/ThemeToggle.astro';
 			prevScroll = currentScroll;
 		});
 	}
-	navbarHide();
+	document.addEventListener('DOMContentLoaded', navbarHide);
 	document.addEventListener('astro:after-swap', navbarHide);
 </script>
