@@ -1,5 +1,6 @@
 ---
 import { CommentSection } from "@/components/CommentSection";
+import { Separator } from "@/components/ui/separator";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { getImageByPath } from "@/lib/utils";
 import type { GetStaticPaths } from "astro";
@@ -14,21 +15,23 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 const { title, image: imagePath } = entry.data;
-const image = getImageByPath(imagePath);
+let image = getImageByPath(imagePath || 'default.jpg');
 
 if (!image) {
-  throw new Error(`Image not found: ${imagePath}`);
+  // load a default image
+  image = getImageByPath('default.jpg');
 }
 ---
 <MainLayout>
   <div class="flex flex-col">
-    <div class="relative aspect-video rounded-xl overflow-hidden">
-      <Image src={image} alt={title} class="object-cover size-full" />
-      <h1 class="absolute bottom-0 w-full py-6 bg-white/20 backdrop-blur-sm shadow-[0_4px_30px] shadow-white/10 border-t border-white/30 text-center ~text-4xl/6xl tracking-widest font-bold uppercase text-secondary">{title}</h1>
+    <div class="relative flex items-center aspect-video rounded-xl overflow-hidden">
+      <Image src={image!} alt={title} class="absolute inset-0 object-cover size-full blur-sm" />
+      <h1 class="z-[1] px-3 sm:px-12 ~text-3xl/6xl text-center text-background font-bold drop-shadow-[0_0_2px_hsl(var(--border))]">{title}</h1>
     </div>
-    <div class="prose dark:prose-invert max-w-none mt-8">
+    <div class="text-xl prose dark:prose-invert max-w-none mt-8">
       <Content />
     </div>
+    <Separator className="my-8" />
     <CommentSection client:only="react" />
   </div>
 </MainLayout>

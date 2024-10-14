@@ -24,7 +24,7 @@ export const CommentSection = () => {
   }, []);
 
   return (
-    <section className="mt-10 px-4 py-3 dark:bg-[#0D1117] rounded-md border">
+    <section className="px-4 py-3 dark:bg-[#0D1117] rounded-md border">
       <Giscus
         {...{
           ...GISCUS_CONFIG,

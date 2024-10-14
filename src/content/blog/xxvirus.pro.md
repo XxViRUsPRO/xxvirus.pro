@@ -1,10 +1,7 @@
 ---
-title: "xxvirus.pro"
-description: "A personal website for myself."
+title: "My Journey Creating xxvirus.pro: From React to Astro 🚀"
 image: "blog-placeholder-2.jpg"
 ---
-
-# My Journey Creating xxvirus.pro: From React to Astro 🚀
 
 ## The Three.js Experiment
 
